@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+  labels:
+    app: leptos-start
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: leptos-start
+  template:
+    metadata:
+      labels:
+        app: leptos-start
+    spec:
+      containers:
+      - name: leptos
+        image: wayeast/k8s-test
+        env:
+          - name: LEPTOS_SITE_ADDR
+            value: "0.0.0.0:3000"
+        ports:
+        - containerPort: 3000
+
